@@ -1,190 +1,159 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Mensagem Especial</title>
+  <meta charset="UTF-8" />
+  <title>Mensagem Especial para Kátia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     @font-face {
       font-family: 'Morydane';
       src: url('Morydane.otf') format('opentype');
-    }* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    }
 
-body {
-  background: #fff;
-  overflow: hidden;
-  position: relative;
-  font-family: 'Morydane', 'Georgia', serif;
-  height: 100vh;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-.contador {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 7em;
-  opacity: 1;
-  transition: opacity 0.5s ease;
-  z-index: 2;
-}
+    body {
+      background: #fff;
+      overflow: hidden;
+      font-family: 'Morydane', sans-serif;
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-.mensagem {
-  display: none;
-  text-align: center;
-  font-size: 3em;
-  position: absolute;
-  top: 25%;
-  width: 100%;
-  color: #333;
-  z-index: 2;
-  opacity: 0;
-  animation: fadeInUp 2s ease forwards;
-}
+    .mensagem {
+      font-size: 32px;
+      text-align: center;
+      color: #333;
+      animation: fadeInUp 2s ease-out;
+      white-space: pre-line;
+      z-index: 2;
+    }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-.video-container {
-  display: none;
-  position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: all 1s ease;
-  z-index: 10;
-}
+    .video-container {
+      display: none;
+      width: 100%;
+      max-width: 720px;
+      margin-top: 20px;
+      padding: 0 10px;
+      animation: fadeInVideo 1.2s ease;
+      z-index: 2;
+    }
 
-.video-container.show {
-  display: block;
-  opacity: 1;
-  transform: scale(1);
-}
+    @keyframes fadeInVideo {
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-video {
-  width: 100%;
-  height: 100%;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-}
+    video {
+      width: 100%;
+      height: auto;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
 
-.final-msg {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  font-size: 2em;
-  color: #333;
-  opacity: 0;
-  transition: opacity 1s ease;
-  z-index: 2;
-}
+    .logo-final {
+      display: none;
+      margin-top: 30px;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
 
-.logo {
-  width: 420px;
-  margin-top: 20px;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
+    .logo-final.show {
+      display: block;
+      opacity: 1;
+    }
 
-.hearts {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 1;
-}
+    .hearts {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
 
-.heart {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  background-image: url('heart.png');
-  background-size: cover;
-  animation: floatUp 10s linear infinite;
-}
+    .heart {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background-image: url('heart.png');
+      background-size: cover;
+      animation: floatUp 10s linear infinite;
+      opacity: 0.8;
+    }
 
-@keyframes floatUp {
-  0% {
-    transform: translateY(100vh);
-    opacity: 0;
-  }
-  30% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-10vh);
-    opacity: 0;
-  }
-}
-
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) scale(0.8);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) scale(1.2);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="contador" id="contador">1</div>
-  <div class="mensagem" id="mensagem">Kátia, uma mensagem especial para você!</div>
+
+  <div class="mensagem" id="mensagem">Kátia, uma mensagem<br>especial para você!</div>
+
   <div class="video-container" id="videoContainer">
     <video id="video" src="Katia.mp4" controls></video>
   </div>
-  <div class="final-msg" id="finalMsg">
-    <p>Feito por</p>
-    <img src="https://i.postimg.cc/7LWQCZjQ/Logo-Alta-Resolu-o-1.png" class="logo" id="logo">
+
+  <div class="logo-final" id="logoFinal">
+    <img src="https://i.postimg.cc/7LWQCZjQ/Logo-Alta-Resolu-o-1.png" width="200" alt="Logo MugShopp" />
   </div>
-  <div class="hearts" id="hearts"></div>  <script>
-    const contadorEl = document.getElementById('contador');
-    const mensagemEl = document.getElementById('mensagem');
+
+  <div class="hearts" id="hearts"></div>
+
+  <script>
+    const mensagem = document.getElementById('mensagem');
     const videoContainer = document.getElementById('videoContainer');
     const video = document.getElementById('video');
-    const finalMsg = document.getElementById('finalMsg');
-    const logo = document.getElementById('logo');
-    let contador = 1;
+    const logoFinal = document.getElementById('logoFinal');
 
-    const interval = setInterval(() => {
-      contador++;
-      if (contador <= 3) {
-        contadorEl.textContent = contador;
-      } else {
-        clearInterval(interval);
-        contadorEl.style.opacity = 0;
-        setTimeout(() => {
-          contadorEl.style.display = 'none';
-          mensagemEl.style.display = 'block';
-          setTimeout(() => {
-            mensagemEl.style.display = 'none';
-            videoContainer.classList.add('show');
-          }, 4000);
-        }, 600);
-      }
-    }, 1000);
+    // Mostrar vídeo após 3 segundos da mensagem
+    setTimeout(() => {
+      mensagem.style.display = 'none';
+      videoContainer.style.display = 'block';
+    }, 3000);
 
+    // Mostrar logo ao final do vídeo
     video.addEventListener('ended', () => {
-      videoContainer.classList.remove('show');
-      setTimeout(() => {
-        videoContainer.style.display = 'none';
-        finalMsg.style.display = 'block';
-        setTimeout(() => {
-          finalMsg.style.opacity = 1;
-          logo.style.opacity = 1;
-        }, 500);
-      }, 1000);
+      logoFinal.classList.add('show');
     });
 
+    // Corações flutuando
     function createHeart() {
       const heart = document.createElement('div');
       heart.classList.add('heart');
@@ -194,5 +163,7 @@ video {
       setTimeout(() => heart.remove(), 12000);
     }
     setInterval(createHeart, 300);
-  </script></body>
+  </script>
+
+</body>
 </html>
